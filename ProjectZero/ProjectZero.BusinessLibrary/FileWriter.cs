@@ -5,10 +5,10 @@ using System.Text;
 namespace ProjectZero.BusinessLibrary
 {
     /// <summary>
-    /// Order Class
-    /// Contains all the methods and fields for the order objects
+    /// FileWriter Class
+    /// Contains all the methods and fields for writing the json data files and saving data
     /// </summary>
-    class Order
+    class FileWriter
     {
     }
 }

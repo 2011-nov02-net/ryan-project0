@@ -10,5 +10,9 @@ namespace ProjectZero.BusinessLibrary
     /// </summary>
     class FileWriter
     {
+        //write customer json
+        //write locations json
+        //write orders json
+        //write products json
     }
 }

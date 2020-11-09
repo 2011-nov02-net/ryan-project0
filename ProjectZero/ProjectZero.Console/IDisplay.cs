@@ -6,5 +6,6 @@ namespace ProjectZero.ConsoleApp
 {
     interface IDisplay
     {
+
     }
 }

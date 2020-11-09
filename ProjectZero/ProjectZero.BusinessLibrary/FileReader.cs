@@ -10,5 +10,9 @@ namespace ProjectZero.BusinessLibrary
     /// </summary>
     class FileReader
     {
+        //read customer json
+        //read locations json
+        //read orders json
+        //read products json
     }
 }

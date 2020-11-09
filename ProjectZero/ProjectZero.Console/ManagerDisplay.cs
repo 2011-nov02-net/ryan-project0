@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ProjectZero.ConsoleApp
 {
-    class ManagerDisplay
+    class ManagerDisplay : IDisplay
     {
     }
 }

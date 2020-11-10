@@ -33,7 +33,7 @@ namespace ProjectZero.ConsoleApp
             }
             //Print
             Console.WriteLine(inv.ToString());
-            Console.Write("\nSelect the name of a product to purchase or (c) to view cart: ");
+            Console.Write("\nSelect the name of a product to purchase or (c) to view cart or (q) to quit: ");
         }
 
         public void DisplayPurchase(Product p, int qty)
@@ -86,7 +86,7 @@ namespace ProjectZero.ConsoleApp
         public void DisplayCheckout(Order o, Location l)
         {
             double total = 0.0;
-            Console.WriteLine($"\n{o.OrderCustomer}'s Order at {o.OrderTime} from {o.StoreLocation}: ");
+            Console.WriteLine($"\n{o.OrderCustomer.CustomerFirstName}'s Order at {o.OrderTime} from {o.StoreLocation.LocationName}: ");
             Console.WriteLine("-----------------------");
             foreach(var item in o.OrderItems)
             {

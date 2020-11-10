@@ -8,10 +8,9 @@ namespace ProjectZero.ConsoleApp
 {
     class Program
     {
-        static Location l;
         static void Main(string[] args)
         {
-            //Location l;
+            Location l = new Location();
             bool runLocation = true;
             //"../../../Data/Locations.json"
             //FileWriter fw = new FileWriter("../../../Data/Locations.json");
@@ -97,7 +96,7 @@ namespace ProjectZero.ConsoleApp
                                 if(Int32.Parse(qtyInput) <= 5)
                                 {
                                     sc.AddToCart(item, Int32.Parse(qtyInput));
-                                    Console.WriteLine($"{qtyInput} of {item} added to cart");
+                                    Console.WriteLine($"{qtyInput} of {item.ProductName} added to cart");
                                 }
                                 else
                                 {

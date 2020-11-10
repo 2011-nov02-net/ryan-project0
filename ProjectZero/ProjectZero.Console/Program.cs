@@ -1,6 +1,7 @@
 ﻿using ProjectZero.BusinessLibrary;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 
 namespace ProjectZero.ConsoleApp
@@ -19,7 +20,7 @@ namespace ProjectZero.ConsoleApp
             //Read from json to get locations list
             //List<Location> locations = fr.ReadLocations("../../../Data/Locations.json");
 
-            //for testing
+            //for testing will be in files
             List<Location> locations = new List<Location>();
             //test data 1
             Location chi = new Location("Chicago");
@@ -29,6 +30,7 @@ namespace ProjectZero.ConsoleApp
             //test data 2
             Location miami = new Location("Miami");
             miami.AddProduct(new Product(1, "Fallout 21", 15, 55.0));
+            miami.AddProduct(new Product(2, "Borderlands 14", 100, 60.0));
             locations.Add(miami);
 
             CustomerDisplay cd = new CustomerDisplay();
@@ -46,19 +48,21 @@ namespace ProjectZero.ConsoleApp
                 //get user location selection
                 Console.Write($"\nSelect a Location: ");
                 string locationInput = Console.ReadLine();
-                foreach (var city in locations)
+                bool containsItem = locations.Any(item => locationInput.Equals(item.LocationName, StringComparison.InvariantCultureIgnoreCase));
+                if (containsItem == true)
                 {
-                    if (locationInput.Equals(city.LocationName, StringComparison.InvariantCultureIgnoreCase))
+                    foreach(var city in locations)
                     {
-                        l = city;
-                        runLocation = false;
-                        break;
+                        if(locationInput.Equals(city.LocationName, StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            l = city;
+                        }
                     }
-                    else
-                    {
-                        Console.WriteLine("\nInvalid location please enter the location name again\n\nLocations:");
-                        break;
-                    }    
+                    runLocation = false;
+                }
+                else
+                {
+                    Console.WriteLine("\nInvalid location please enter the location name again\n\nLocations:");
                 }
             }
             //get user type and show corresponding store menus

@@ -17,7 +17,7 @@ namespace ProjectZero.BusinessLibrary
         //read orders json
 
         public FileReader() { }
-
+        
         public List<Location> ReadLocations(string filePath)
         {
             string json;

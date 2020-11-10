@@ -88,7 +88,7 @@ namespace ProjectZero.ConsoleApp
 
                         while (runPurchase)
                         {
-                            cd.DisplayStore(l);
+                            cd.DisplayStore(l); 
                             purchaseInput = Console.ReadLine();
                             if (purchaseInput.Equals(item.ProductName, StringComparison.InvariantCultureIgnoreCase))
                             {
@@ -106,9 +106,18 @@ namespace ProjectZero.ConsoleApp
                             }
                             else if(purchaseInput.Equals("c", StringComparison.InvariantCultureIgnoreCase))
                             {
-                                cd.DisplayCart(sc);
+                                bool checkout = cd.DisplayCart(sc);
 
                                 //create and log order
+                                if(checkout)
+                                {
+                                    Order o = new Order(l, c, DateTime.Now, sc.Cart);
+                                    cd.DisplayCheckout(o, l);
+                                }
+                                else
+                                {
+                                    break;
+                                }
 
                                 //update locations inventory
                             }

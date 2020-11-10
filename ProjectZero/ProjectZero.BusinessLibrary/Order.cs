@@ -15,10 +15,11 @@ namespace ProjectZero.BusinessLibrary
         public Location StoreLocation { get; }
         public Customer OrderCustomer { get; }
         public DateTime OrderTime { get; }
-        private List<Product> OrderItems = new List<Product>();
+        public Dictionary<Product, int> OrderItems = new Dictionary<Product, int>();
+        private List<Order> orderList = new List<Order>();
 
         //Constructor
-        public Order(Location l, Customer c, DateTime time, List<Product> items)
+        public Order(Location l, Customer c, DateTime time, Dictionary<Product, int> items)
         {
             StoreLocation = l;
             OrderCustomer = c;
@@ -26,10 +27,9 @@ namespace ProjectZero.BusinessLibrary
             OrderItems = items;
         }
 
-        //get all orders items
-        public List<Product> GetOrderItems()
+        public void AddToOrderList(Order o)
         {
-            return null;
+            orderList.Add(o);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace ProjectZero.ConsoleApp
             //Read from json to get locations list
             //List<Location> locations = fr.ReadLocations("../../../Data/Locations.json");
 
-            //for testing will be in files
+            //for testing will be in files will be replaced with reading from files
             List<Location> locations = new List<Location>();
             //test data 1
             Location chi = new Location("Chicago");
@@ -73,20 +73,48 @@ namespace ProjectZero.ConsoleApp
 
                 if (userTypeInput.Equals("c", StringComparison.InvariantCultureIgnoreCase))
                 {
-                    foreach(var item in l.Inventory)
+                    //create customer
+                    var names = cd.DisplayNamesGet();
+                    Customer c = new Customer($"{names.Item1}", $"{names.Item2}");
+
+                    //shopping cart
+                    ShoppingCart sc = new ShoppingCart();
+
+                    //fix loop - wont let you select product if foreach already passed it
+                    foreach (var item in l.Inventory)
                     {
                         string purchaseInput = "";
+                        bool runPurchase = true;
 
-                        while (!purchaseInput.Equals(item.ProductName, StringComparison.InvariantCultureIgnoreCase))
+                        while (runPurchase)
                         {
                             cd.DisplayStore(l);
                             purchaseInput = Console.ReadLine();
                             if (purchaseInput.Equals(item.ProductName, StringComparison.InvariantCultureIgnoreCase))
                             {
-                                //add item to order
+                                Console.Write("\nHow many would you like to buy (max 5): ");
+                                string qtyInput = Console.ReadLine();
+                                if(Int32.Parse(qtyInput) <= 5)
+                                {
+                                    sc.AddToCart(item, Int32.Parse(qtyInput));
+                                    Console.WriteLine($"{qtyInput} of {item} added to cart");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("\nInvalid Input. Try Again.");
+                                }
+                            }
+                            else if(purchaseInput.Equals("c", StringComparison.InvariantCultureIgnoreCase))
+                            {
+                                cd.DisplayCart(sc);
+
+                                //create and log order
+
+                                //update locations inventory
                             }
                             else if (purchaseInput.Equals("q", StringComparison.InvariantCultureIgnoreCase))
                             {
+                                runPurchase = false;
                                 break;
                             }
                             else

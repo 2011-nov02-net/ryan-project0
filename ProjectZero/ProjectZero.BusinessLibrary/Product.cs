@@ -13,15 +13,15 @@ namespace ProjectZero.BusinessLibrary
         //fields
         public int ProductID { get; }
         public string ProductName { get; }
-        public int ProductInventory { get; set; }
+        public int ProductQty { get; set; }
         public double ProductPrice { get; }
 
         //constructor
-        public Product(int id, string name, int inv, double price)
+        public Product(int id, string name, int qty, double price)
         {
             ProductID = id;
             ProductName = name;
-            ProductInventory = inv;
+            ProductQty = qty;
             ProductPrice = price;
         }
     }

@@ -9,7 +9,7 @@ namespace ProjectZero.BusinessLibrary
     /// Order Class
     /// Contains all the methods and fields for the order objects
     /// </summary>
-    class Order
+    public class Order
     {
         //Fields
         public Location StoreLocation { get; }

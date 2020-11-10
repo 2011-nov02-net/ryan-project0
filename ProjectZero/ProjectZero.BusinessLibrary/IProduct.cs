@@ -8,7 +8,7 @@ namespace ProjectZero.BusinessLibrary
     {
         int ProductID { get; }
         string ProductName { get; }
-        int ProductInventory { get; set; }
+        int ProductQty { get; set; }
         double ProductPrice { get; }
     }
 }

@@ -7,21 +7,18 @@ namespace ProjectZero.BusinessLibrary
 {
     public class ShoppingCart
     {
-        public List<Product> Cart { get; set; } = new List<Product>();
+        public Dictionary<Product, int> Cart = new Dictionary<Product, int>();
 
-        public ShoppingCart()
-        {
-
-        }
+        public ShoppingCart() { }
 
         public void AddToCart(Product p, int qty)
         {
-            
+            Cart.Add(p, qty);
         }
 
-        public void RemoveFromCart(Product p, int qty)
+        public void RemoveFromCart(Product p)
         {
-            
+            Cart.Remove(p);
         }
     }
 }

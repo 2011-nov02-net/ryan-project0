@@ -12,8 +12,6 @@ namespace ProjectZero.ConsoleApp
         {
             Location l = new Location();
             bool runLocation = true;
-            //"../../../Data/Locations.json"
-            //FileWriter fw = new FileWriter("../../../Data/Locations.json");
             //FileReader fr = new FileReader();
 
             //Read from json to get locations list

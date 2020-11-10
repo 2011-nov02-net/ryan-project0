@@ -12,7 +12,7 @@ namespace ProjectZero.BusinessLibrary
     public class Order
     {
         //Fields
-        public Location StoreLocation { get; }
+        public string StoreLocation { get; }
         public Customer OrderCustomer { get; }
         public DateTime OrderTime { get; }
         public Dictionary<Product, int> OrderItems = new Dictionary<Product, int>();
@@ -21,7 +21,7 @@ namespace ProjectZero.BusinessLibrary
         //Constructor
         public Order(Location l, Customer c, DateTime time, Dictionary<Product, int> items)
         {
-            StoreLocation = l;
+            StoreLocation = l.LocationName;
             OrderCustomer = c;
             OrderTime = time;
             OrderItems = items;
@@ -30,6 +30,19 @@ namespace ProjectZero.BusinessLibrary
         public void AddToOrderList(Order o)
         {
             orderList.Add(o);
+
+            //update file
+            FileWriter fw = new FileWriter();
+            fw.WriteOrder(o, "../../../Data/Orders.json");
+        }
+
+        public List<Order> GetOrderList()
+        {
+            //always get upto date order list
+            FileReader fr = new FileReader();
+            orderList = fr.ReadOrders("../../../Data/Orders.json");
+
+            return orderList;
         }
     }
 }

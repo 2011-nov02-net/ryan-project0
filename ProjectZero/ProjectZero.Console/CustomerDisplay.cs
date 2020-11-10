@@ -86,7 +86,7 @@ namespace ProjectZero.ConsoleApp
         public void DisplayCheckout(Order o, Location l)
         {
             double total = 0.0;
-            Console.WriteLine($"\n{o.OrderCustomer.CustomerFirstName}'s Order at {o.OrderTime} from {o.StoreLocation.LocationName}: ");
+            Console.WriteLine($"\n{o.OrderCustomer.CustomerFirstName}'s Order at {o.OrderTime} from {o.StoreLocation}: ");
             Console.WriteLine("-----------------------");
             foreach(var item in o.OrderItems)
             {

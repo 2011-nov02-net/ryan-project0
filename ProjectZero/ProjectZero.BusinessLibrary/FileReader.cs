@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Text;
-using System.Text.Json;
+using Newtonsoft.Json;
 
 namespace ProjectZero.BusinessLibrary
 {
@@ -20,22 +19,22 @@ namespace ProjectZero.BusinessLibrary
         
         public List<Location> ReadLocations(string filePath)
         {
-            string json;
-            List<Location> readLocations = new List<Location>();
+            return null;
+        }
 
-            try
+        public List<Order> ReadOrders(string path)
+        {
+            List<Order> orderList = new List<Order>();
+            /*
+            // deserialize JSON directly from a file
+            using (StreamReader file = File.OpenText(path))
             {
-                json = File.ReadAllText(filePath);
-            }
-            catch (IOException)
-            {
-                return new List<Location>();
-            }
+                JsonSerializer serializer = new JsonSerializer();
+                orderList = (List<Order>)serializer.Deserialize(file, typeof(List<Order>));
+                
+            }*/
 
-            Location data = JsonSerializer.Deserialize<Location>(json); //broken
-            readLocations.Add(data);
-
-            return readLocations;
+            return orderList;
         }
     }
 }

@@ -7,14 +7,20 @@ namespace ProjectZero.ConsoleApp
 {
     class CustomerDisplay : IDisplay
     {
+        public void DisplayWelcome()
+        {
+            Console.WriteLine("Stream Game Store Menu");
+            Console.WriteLine("-------------------");
+        }
+
         //Display store menu and build/display locations inventory
         public void DisplayStore(Location l)
         {
             List<Product> storeProducts = l.Inventory;
             var inv = new StringBuilder();
 
-            Console.Clear();
-            Console.WriteLine($"\nBLANK {l.LocationName} Console Customer Store Menu");
+            //Console.Clear();
+            Console.WriteLine($"\nStream {l.LocationName} Game Console Customer Store Menu");
             Console.WriteLine("--------------------------------------------------");
 
             //Header line
@@ -26,9 +32,22 @@ namespace ProjectZero.ConsoleApp
             }
             //Print
             Console.WriteLine(inv.ToString());
+            Console.Write("\nSelect the name of a product to purchase: ");
         }
+
+        public void DisplayPurchase(Product p, int qty)
+        {
+
+        }
+
         //Display users shopping cart
         public void DisplayCart(ShoppingCart sc)
+        {
+
+        }
+
+        //display all locations
+        public void DisplayLocations()
         {
 
         }

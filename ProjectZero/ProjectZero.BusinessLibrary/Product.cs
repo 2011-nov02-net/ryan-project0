@@ -8,12 +8,12 @@ namespace ProjectZero.BusinessLibrary
     /// Product Class
     /// Contains all the methods and fields for the product objects
     /// </summary>
-    public class Product
+    public class Product : IProduct
     {
         //fields
         public int ProductID { get; }
         public string ProductName { get; }
-        public int ProductInventory { get; private set; }
+        public int ProductInventory { get; set; }
         public double ProductPrice { get; }
 
         //constructor

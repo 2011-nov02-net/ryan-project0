@@ -348,3 +348,7 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+#connection file
+C:/Users/towne/Desktop/Project0/Project0.ConsoleApp/connection.json
+C:/revature/Code/yan-project0/Project0/Project0.ConsoleApp/connection.json

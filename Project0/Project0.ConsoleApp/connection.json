@@ -1,0 +1,1 @@
+Server=tcp:towner-training.database.windows.net,1433;Initial Catalog=project0;Persist Security Info=False;User ID=rtowner;Password=MazdaSpeed3;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;

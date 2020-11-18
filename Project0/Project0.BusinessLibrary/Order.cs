@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Project0.BusinessLibrary.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Project0.BusinessLibrary
 {
-    public class Order
+    public class Order : IOrder
     {
         public int OrderId { get; }
         public int OrderCustomerId { get; }

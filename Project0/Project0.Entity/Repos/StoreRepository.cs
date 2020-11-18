@@ -77,7 +77,7 @@ namespace Project0.ConsoleApp
             //create order
             Entity.Entities.Order o = new Entity.Entities.Order();
             o.UserId = order.OrderCustomerId;
-            o.StoreId = order.OrderStoreLocationId + 1;
+            o.StoreId = order.OrderStoreLocationId;
             o.OrderTime = DateTime.Now;
             o.OrderTotal = (decimal)total;
 
@@ -234,6 +234,43 @@ namespace Project0.ConsoleApp
             var last = orders.First();
 
             return last.Id;
+        }
+
+        /// <summary>
+        /// Method to get the id of the last user
+        /// </summary>
+        public int GetLastUserId()
+        {
+            IQueryable<Entity.Entities.User> users = _dbContext.Users.OrderByDescending(x => x.Id);
+            var last = users.First();
+
+            return last.Id;
+        }
+
+        /// <summary>
+        /// Method to update the stores inventory tables products qtys
+        /// </summary>
+        /// <param name="l">The storelocation object</param>
+        /// <param name="prodList">a list of all the products being purchases</param>
+        public void UpdateProductInventory(BusinessLibrary.StoreLocation l, List<BusinessLibrary.Product> prodList)
+        {
+            //get the product
+            IQueryable<Entity.Entities.StoreInventory> inv = _dbContext.StoreInventories.Where(x => x.LocationId == l.StoreLocationId + 1);
+
+            //update db
+            foreach(var i in inv)
+            {
+                foreach(var p in prodList)
+                {
+                    if(i.ProductId == p.ProductId)
+                    {
+                        i.ProductQty -= p.ProductQty;
+                    }
+                }
+            }
+
+            //save changes
+            _dbContext.SaveChanges();
         }
 
     }

@@ -22,25 +22,18 @@ namespace Project0.ConsoleApp
             StoreRepository repo = new StoreRepository(CreateDbContext(), CreateDbContext(), CreateDbContext());
             while(true)
             {
-                //Welcome and get user info
-                c = cd.Login();
-
                 //get locations from db
                 List<BusinessLibrary.StoreLocation> locations = new List<BusinessLibrary.StoreLocation>();
                 locations = (List<BusinessLibrary.StoreLocation>)repo.GetStoreLocations();
 
-                if (c.UserType == 1) //customer
-                {
-                    //Get store location to purchase from
-                    store = cd.GetStoreLocation(locations);
+                //Welcome and get user info
+                c = cd.Login(repo, locations);
 
-                    //Browse products from store and purchase
-                    cd.OpenShopping(store, c, (List<BusinessLibrary.Product>)repo.GetStoreInventory(store), repo);
-                }
-                else //manager
-                {
-                    md.ShowManagerMenu(repo, locations);
-                }
+                //Get store location to purchase from
+                store = cd.GetStoreLocation(locations);
+
+                //Browse products from store and purchase
+                cd.OpenShopping(store, c, (List<BusinessLibrary.Product>)repo.GetStoreInventory(store), repo);
             }
         }
 

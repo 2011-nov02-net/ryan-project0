@@ -47,7 +47,7 @@ namespace Project0.ConsoleApp
                         }
                         else
                         {
-                            Console.WriteLine("ID\tFIRST NAME\tLAST NAME\tUSER TYPE");
+                            Console.WriteLine("\nID\tFIRST NAME\tLAST NAME\tUSER TYPE");
                             Console.WriteLine($"{cust.CustomerId}\t{cust.FirstName}\t\t{cust.LastName}\t\t{cust.UserType}");
                         }
                         break;

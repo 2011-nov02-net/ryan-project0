@@ -16,7 +16,7 @@ namespace Project0.ConsoleApp
         /// <summary>
         /// Method to get user names and which menu they want
         /// </summary>
-        public Customer Login()
+        public Customer Login(StoreRepository repo, List<StoreLocation> locations)
         {
             Customer c;
             string firstName = "";
@@ -33,22 +33,26 @@ namespace Project0.ConsoleApp
                 //Create customer
                 Console.Write("\nPlease enter your first name: ");
                 firstName = Console.ReadLine();
+                
                 Console.Write("Please enter your last name: ");
                 lastName = Console.ReadLine();
 
-                c = new Customer(1, firstName, lastName, 1);
+                //get user from db
+                c = repo.GetCustomerByName(char.ToUpper(firstName[0]) + firstName.Substring(1), char.ToUpper(lastName[0]) + lastName.Substring(1));
+
+                if(c == null)
+                {
+                    //new customer
+                    int lastid = repo.GetLastUserId();
+                    c = new Customer(lastid + 1, firstName, lastName, 1);
+                }
+
                 return c;
             }
             else if(input.Equals("m", StringComparison.InvariantCultureIgnoreCase))
             {
-                //Create manager
-                Console.Write("\nPlease enter your first name: ");
-                firstName = Console.ReadLine();
-                Console.Write("Please enter your last name: ");
-                lastName = Console.ReadLine();
-
-                c = new Customer(1, firstName, lastName, 2);
-                return c;
+                ManagerDisplay md = new ManagerDisplay();
+                md.ShowManagerMenu(repo, locations);
             }
             else if (input.Equals("q", StringComparison.InvariantCultureIgnoreCase))
             {
@@ -164,6 +168,7 @@ namespace Project0.ConsoleApp
                                     Order o = new Order(lastid + 1, c, DateTime.Now, l, (decimal)total);
                                     repo.CreateOrder(o, total);
                                     repo.CreateOrderProduct(cart);
+                                    repo.UpdateProductInventory(l, cart);
 
                                     Console.WriteLine("\nOrder Completed!");
                                     runShopping = false;

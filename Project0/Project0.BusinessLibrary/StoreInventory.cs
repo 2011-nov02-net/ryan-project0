@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Project0.BusinessLibrary
 {
+    /// <summary>
+    /// storeinventory class. Contains storeinventory fields and constructor
+    /// </summary>
     public class StoreInventory
     {
         public int StoreInventoryLocationId { get; }

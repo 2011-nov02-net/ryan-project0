@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Project0.BusinessLibrary
 {
+    /// <summary>
+    /// Order class. Contains orders fields and constructor
+    /// </summary>
     public class Order : IOrder
     {
         public int OrderId { get; }

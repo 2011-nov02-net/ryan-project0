@@ -10,13 +10,15 @@ namespace Project0.ConsoleApp
 {
     class Program
     {
+        /// <summary>
+        /// Main fucntion to create objects and run display menus
+        /// </summary>
         static void Main(string[] args)
         {
             //Objects
             Customer c;
             BusinessLibrary.StoreLocation store;
             CustomerDisplay cd = new CustomerDisplay();
-            ManagerDisplay md = new ManagerDisplay();
 
             //create repo object
             StoreRepository repo = new StoreRepository(CreateDbContext(), CreateDbContext(), CreateDbContext());
@@ -37,6 +39,9 @@ namespace Project0.ConsoleApp
             }
         }
 
+        /// <summary>
+        /// Method to create a db context
+        /// </summary>
         static project0Context CreateDbContext()
         {
             //create log
@@ -50,6 +55,9 @@ namespace Project0.ConsoleApp
             return new project0Context(optionsBuilder.Options);
         }
 
+        /// <summary>
+        /// Method to get get the connection string
+        /// </summary>
         static string GetConnectionString()
         {
             string path = "../../../connection.json";

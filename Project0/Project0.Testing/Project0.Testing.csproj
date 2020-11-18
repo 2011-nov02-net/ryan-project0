@@ -18,4 +18,10 @@
     <PackageReference Include="coverlet.collector" Version="1.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Project0.BusinessLibrary\Project0.BusinessLibrary.csproj" />
+    <ProjectReference Include="..\Project0.ConsoleApp\Project0.ConsoleApp.csproj" />
+    <ProjectReference Include="..\Project0.Entity\Project0.Entity.csproj" />
+  </ItemGroup>
+
 </Project>

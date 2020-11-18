@@ -10,12 +10,15 @@ namespace Project0.BusinessLibrary
         public int OrderCustomerId { get; }
         public DateTime OrderTime { get; }
         public int OrderStoreLocationId { get; }
+        public decimal OrderTotal { get; }
 
-        public Order(Customer cust, DateTime time, StoreLocation location)
+        public Order(int id, Customer cust, DateTime time, StoreLocation location, decimal total)
         {
+            OrderId = id;
             OrderCustomerId = cust.CustomerId;
             OrderTime = time;
             OrderStoreLocationId = location.StoreLocationId;
+            OrderTotal = total;
         }
     }
 }

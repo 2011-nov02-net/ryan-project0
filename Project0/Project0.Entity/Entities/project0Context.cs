@@ -28,7 +28,6 @@ namespace Project0.Entity.Entities
         {
             if (!optionsBuilder.IsConfigured)
             {
-                #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("");
             }
         }
@@ -40,27 +39,40 @@ namespace Project0.Entity.Entities
                 entity.ToTable("Orders", "Project0");
 
                 entity.Property(e => e.OrderTotal).HasColumnType("money");
+
+                entity.HasOne(d => d.Store)
+                    .WithMany(p => p.Orders)
+                    .HasForeignKey(d => d.StoreId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Orders__StoreId__693CA210");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Orders)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Orders__UserId__68487DD7");
             });
 
             modelBuilder.Entity<OrderProduct>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => new { e.OrderId, e.ProductId })
+                    .HasName("PK__OrderPro__08D097A38DAF97EF");
 
                 entity.ToTable("OrderProduct", "Project0");
 
                 entity.Property(e => e.ProductPricePaid).HasColumnType("money");
 
                 entity.HasOne(d => d.Order)
-                    .WithMany()
+                    .WithMany(p => p.OrderProducts)
                     .HasForeignKey(d => d.OrderId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_OrderProduct_OrderId");
+                    .HasConstraintName("FK__OrderProd__Order__6C190EBB");
 
                 entity.HasOne(d => d.Product)
-                    .WithMany()
+                    .WithMany(p => p.OrderProducts)
                     .HasForeignKey(d => d.ProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_OrderProduct_ProductId");
+                    .HasConstraintName("FK__OrderProd__Produ__6D0D32F4");
             });
 
             modelBuilder.Entity<Product>(entity =>
@@ -76,32 +88,31 @@ namespace Project0.Entity.Entities
 
             modelBuilder.Entity<StoreInventory>(entity =>
             {
+                entity.HasKey(e => new { e.LocationId, e.ProductId })
+                    .HasName("PK__StoreInv__2CBE68FB0C4F15FB");
+
                 entity.ToTable("StoreInventory", "Project0");
+
+                entity.HasOne(d => d.Location)
+                    .WithMany(p => p.StoreInventories)
+                    .HasForeignKey(d => d.LocationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__StoreInve__Locat__6383C8BA");
 
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.StoreInventories)
                     .HasForeignKey(d => d.ProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_StoreInventory_ProductId");
+                    .HasConstraintName("FK__StoreInve__Produ__6477ECF3");
             });
 
             modelBuilder.Entity<StoreLocation>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.ToTable("StoreLocation", "Project0");
-
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(300);
-
-                entity.HasOne(d => d.Inventory)
-                    .WithMany()
-                    .HasForeignKey(d => d.InventoryId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_StoreLocation_InventoryId");
             });
 
             modelBuilder.Entity<User>(entity =>

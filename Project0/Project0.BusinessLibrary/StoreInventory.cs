@@ -14,17 +14,5 @@ namespace Project0.BusinessLibrary
         {
             StoreInventoryLocationId = storeId.StoreLocationId;
         }
-
-        //Add product or increase quantity in stock
-        public void AddProduct(int productId, int qty)
-        {
-            //sql to update product qty in table
-        }
-
-        //Remove product or decrease quantity in stock
-        public void RemoveProduct(int productId, int qty)
-        {
-            //sql to update product qty in table
-        }
     }
 }

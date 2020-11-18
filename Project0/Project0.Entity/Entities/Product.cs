@@ -9,6 +9,7 @@ namespace Project0.Entity.Entities
     {
         public Product()
         {
+            OrderProducts = new HashSet<OrderProduct>();
             StoreInventories = new HashSet<StoreInventory>();
         }
 
@@ -16,6 +17,7 @@ namespace Project0.Entity.Entities
         public string Name { get; set; }
         public decimal Price { get; set; }
 
+        public virtual ICollection<OrderProduct> OrderProducts { get; set; }
         public virtual ICollection<StoreInventory> StoreInventories { get; set; }
     }
 }

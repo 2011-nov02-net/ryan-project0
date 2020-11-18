@@ -13,6 +13,9 @@ namespace Project0.ConsoleApp
     {
         public CustomerDisplay() { }
 
+        /// <summary>
+        /// Method to get user names and which menu they want
+        /// </summary>
         public Customer Login()
         {
             Customer c;
@@ -59,6 +62,10 @@ namespace Project0.ConsoleApp
             return new Customer(1, firstName, lastName, 1);
         }
 
+        /// <summary>
+        /// Method to get the stores location the user wants to purchase from
+        /// </summary>
+        /// <param name="locations">A list of all the store locations from db</param>
         public StoreLocation GetStoreLocation(List<StoreLocation> locations)
         {
             StoreLocation store = null;
@@ -79,9 +86,21 @@ namespace Project0.ConsoleApp
                 }
             }
 
+            if(store == null)
+            {
+                GetStoreLocation(locations);
+            }
+
             return store;
         }
 
+        /// <summary>
+        /// Method to show shopping menus and run their options
+        /// </summary>
+        /// <param name="l">The stores location object</param>
+        /// <param name="c">The users customer object</param>
+        /// <param name="p">List of the stores products from db</param>
+        /// <param name="repo">The repo object to use repo methods</param>
         public void OpenShopping(StoreLocation l, Customer c, List<Product> p, StoreRepository repo)
         {
             bool runShopping = true;
@@ -140,10 +159,11 @@ namespace Project0.ConsoleApp
                                 string completeInput = Console.ReadLine();
                                 if (completeInput.Equals("y", StringComparison.InvariantCultureIgnoreCase))
                                 {
+                                    int lastid = repo.GetLastOrderId();
                                     //create order and update table values
-                                    Order o = new Order(c, DateTime.Now, l);
+                                    Order o = new Order(lastid + 1, c, DateTime.Now, l, (decimal)total);
                                     repo.CreateOrder(o, total);
-                                    repo.CreateOrderProduct(o, cart);
+                                    repo.CreateOrderProduct(cart);
 
                                     Console.WriteLine("\nOrder Completed!");
                                     runShopping = false;

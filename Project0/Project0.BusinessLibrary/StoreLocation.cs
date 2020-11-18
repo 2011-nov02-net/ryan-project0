@@ -8,13 +8,13 @@ namespace Project0.BusinessLibrary
     {
         public int StoreLocationId { get; }
         public string StoreLocationName { get; }
-        public int StoreLocationInventoryId { get; }
 
-        public StoreLocation(int id, string name, int invId)
+        public StoreLocation() { }
+
+        public StoreLocation(int id, string name)
         {
             StoreLocationId = id;
             StoreLocationName = name;
-            StoreLocationInventoryId = invId;
         }
     }
 }

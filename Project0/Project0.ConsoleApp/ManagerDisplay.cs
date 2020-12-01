@@ -108,7 +108,6 @@ namespace Project0.ConsoleApp
                             foreach (var p in productList)
                             {
                                 string output = string.Format("{0,-5} {1,-20} ${2,-6} {3,-3} ${4,-6}", p.ProductId, p.ProductName, p.ProductPrice, p.ProductQty, p.ProductPrice * p.ProductQty);
-                                //Console.WriteLine($"{p.ProductId}\t{p.ProductName}\t\t${p.ProductPrice}\t(x{p.ProductQty})\t${p.ProductPrice * p.ProductQty}");
                                 Console.WriteLine(output);
                             }
                         }
